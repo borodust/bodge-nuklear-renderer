@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/borodust/bodge-nuklear-renderer.svg)](https://travis-ci.org/borodust/bodge-nuklear-renderer) [![Build status](https://ci.appveyor.com/api/projects/status/di06oa6mp64el65a?svg=true)](https://ci.appveyor.com/project/borodust/bodge-nuklear-renderer)
+[![Build Status](https://travis-ci.org/borodust/bodge-nuklear-renderer.svg)](https://travis-ci.org/borodust/bodge-nuklear-renderer) [![Build status](https://ci.appveyor.com/api/projects/status/gaqlwmf7shnbsv5d?svg=true)](https://ci.appveyor.com/project/borodust/bodge-nuklear-renderer)
 
 # BODGE-NUKLEAR-RENDERER
 
