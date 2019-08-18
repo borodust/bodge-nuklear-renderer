@@ -1,0 +1,18 @@
+# lisp junk
+*.FASL
+*.fasl
+*.lisp-temp
+
+# emacs junk
+\#*
+*~
+.\#*
+
+# system dependent junk
+local/
+
+
+# binaries
+lib/*.so*
+lib/*.dylib*
+lib/*.dll*
