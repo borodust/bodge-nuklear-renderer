@@ -4,12 +4,13 @@
   :author "Pavel Korolev"
   :mailto "dev@borodust.org"
   :license "MIT"
-  :depends-on (alexandria cffi claw)
+  :depends-on (:alexandria :cffi :cffi-c-ref :claw)
   :serial t
-  :components ((:file "src/packages")
+  :pathname "src/"
+  :components ((:file "packages")
                (:static-file "bodge_nuklear_renderer.h")
-               (:file "src/claw")
-               (:file "src/renderer")
+               (:file "claw")
+               (:file "renderer")
                (:module spec)
                (:module lib)
 	       (:module nuklear-lib :pathname "lib/nuklear/")))
