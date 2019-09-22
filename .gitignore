@@ -13,6 +13,6 @@ local/
 
 
 # binaries
-lib/*.so*
-lib/*.dylib*
-lib/*.dll*
+**/*.so*
+**/*.dylib*
+**/*.dll*

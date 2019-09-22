@@ -1,5 +1,10 @@
-(claw:c-include "bodge_nuklear_renderer.h" bodge-nuklear-renderer
-  :in-package (:%nuklear-renderer :%nk-renderer)
-  :sysincludes (:nuklear-lib)
-  :include-definitions ("nk_bodge\\w*")
-  :rename-symbols (claw:by-removing-prefixes "nk_"))
+(uiop:define-package :%nuklear-renderer
+  (:nicknames :%nk-renderer)
+  (:use))
+
+
+(claw:defwrapper (nuklear-renderer::bodge-nuklear-renderer
+                  (:includes :nuklear-lib)
+                  (:include-definitions "nk_bodge\\w*"))
+  :in-package :%nk-renderer
+  :symbolicate-names (:by-removing-prefixes "nk_"))

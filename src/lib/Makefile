@@ -5,7 +5,7 @@ WORK_DIR = $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 
 # Flags
 ENV_CFLAGS := $(CFLAGS)
-CFLAGS := $(ENV_CFLAGS) -std=c89 -pedantic -O2 -fPIC -Inuklear/ -I../ -Iglad/glad/include/ -L./
+CFLAGS := $(ENV_CFLAGS) -std=c99 -pedantic -O2 -fPIC -Inuklear/ -I../ -Iglad/glad/include/ -L./
 
 SRC = main.c
 OBJ = $(SRC:.c=.o)
