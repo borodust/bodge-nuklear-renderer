@@ -10,6 +10,7 @@ env:
   global:
     - NAME: nkrenderer
     - ASDF_SYSTEM: bodge-nuklear-renderer
+    - PATH: ~/.bodge/bin/:$PATH
     - secure: "rJwNuFkj3Q+0rQJf5I4yGJ+QD3NnJoDOsM4oreg0vah6Ov0KSmUnuix3j6s2SRpkcm2VqPyjyrfDDI+9CctaV1IeJQhrgP9GLhYhjs3yFY51/OeaNqUUuL9qAf+rBWuxrrEkVYFRypsXl83XjLl90Aef44yNg1HLUxCfh9caMr+PtHYsyxBrzr4rMrh205y4l+WwiIc4Mgf3vTSbol1exyhQslytQtDZJCq8lWI+SNewgFat2HU4Ii7/Czg1p1zWLo2ObO9EYd1q5jxWNdhFGf60bUr6T1u9OCoXtJESXeJOhzhagi0kZ9ilacHhrYLNiwrr3KqsAxMop1BRhrxRUjrTCIEVnk/BjlH5I0PT+RyLP2cbVH3Q+FRkzYiDAzbz3dPOSZQhtc1LGoMfAh74UW0ZfAuWfHtB47ned9Hwx+F6Iadk//IrHueJXNzim0qJWb3NutiHyYjMp4BAoq8bjyFzphe4vyjVfuIa0yznNVYBNfFSVs332qYXok3s+ZI4qkpMr0zTV7f0rynNjnj+B4PSjFr9Rb3wz48dGDFq26cmpeaJ4rpJzj6YNgX1fHkUMMBwkXDvCF0SMUmLyssyupweSSQ0BIMuswz5vZ9CVMCSiWFvHbbnK5VYSl06zJ4QujR94+RAi468qYm66d3uchxbmgGo7/PSkVQWFXBHbWA="
 
 matrix:
@@ -45,19 +46,20 @@ branches:
 
 install:
   - curl -L http://bodge.borodust.org/files/install.sh | sh
-  - ln -s $TRAVIS_BUILD_DIR/ ~/quicklisp/local-projects/$ASDF_SYSTEM
 
 script:
+  - export TARGET_FILE=$TRAVIS_BUILD_DIR/$LIBNAME-$TARGET_ARCH-$TRAVIS_OS_NAME-$TRAVIS_BRANCH
+  - export TARGET_SPEC=$TRAVIS_BUILD_DIR/$LIBNAME-$TARGET_ARCH-$TRAVIS_OS_NAME-$TRAVIS_BRANCH-spec.zip
   - cd src/lib/ && make clean build
+  - lisp regen-local-spec-and-zip --arch $TARGET_ARCH "$TRAVIS_BUILD_DIR" $ASDF_SYSTEM "$TARGET_SPEC"
 
 before_deploy:
-  - export TARGET_FILE=$TRAVIS_BUILD_DIR/$LIBNAME-$TARGET_ARCH-$TRAVIS_OS_NAME-$TRAVIS_BRANCH
-  - mv $TRAVIS_BUILD_DIR/src/lib/$LIBNAME.bodged $TARGET_FILE
+  - mv $TRAVIS_BUILD_DIR/src/lib/$LIBNAME.bodged "$TARGET_FILE"
 
 deploy:
   provider: releases
   api-key: $GITHUB_TOKEN
-  file: [$TARGET_FILE]
+  file: [$TARGET_FILE, $TARGET_SPEC]
   skip_cleanup: true
   overwrite: true
   on:
