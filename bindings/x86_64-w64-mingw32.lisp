@@ -4,7 +4,7 @@
                                                                 :cl))
 (common-lisp:in-package :bodge-nuklear-renderer-bindings~pristine)
 
-(cffi:defcstruct (%nk-renderer::context :size 16624))
+(cffi:defcstruct (%nk-renderer::context :size 16528))
 
 (cffi:defcstruct (%nk-renderer::bodge-renderer :size 0))
 
